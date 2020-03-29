@@ -16,10 +16,15 @@ const login = async (req, res, next) => {
 
     user.comparePassword(req.body.password, (err, isMatch) => {
         if (isMatch && !err) {
-            var token = jwt.sign({ name: req.body.name }, 'nodeauthsecret');
-            res.status(200).json({ success: true, token: token, user: user });
+            var token = jwt.sign({ name: req.body.name , userId:user.id}, 'nodeauthsecret');
+            res.status(200).json({
+                 success: true, 
+                 token: token,
+                  user: user });
         } else {
-            res.status(401).send({ success: false, msg: 'Authentication failed. Wrong password.' });
+            res.status(400).send({
+                 success: false,
+                  msg: 'Authentication failed. Wrong password.' });
         }
     })
 }

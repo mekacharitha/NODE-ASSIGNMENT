@@ -19,7 +19,9 @@ const updatePassword = async (req, res, next) => {
                         message: "password changed successfully",
                     })
                 } else {
-                    res.status(401).send({ success: false, msg: 'Authentication failed. Wrong old password.' });
+                    res.status(404).send({ 
+                        success: false, 
+                        msg: 'Authentication failed. Wrong old password.' });
                 }
             })
 

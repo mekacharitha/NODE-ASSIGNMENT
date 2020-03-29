@@ -9,6 +9,8 @@ const addActivity = require('../controllers/activityControllers/addActivity')
 const getActivities = require('../controllers/activityControllers/getActivities')
 const getActivitiesByDate = require('../controllers/activityControllers/getActivityByDate')
 
+const report = require('../controllers/reportControllers/report')
+
 router.post('/signup', signUp)
 
 router.post('/login' , login)
@@ -19,7 +21,9 @@ router.post('/activity' , addActivity);
 
 router.get('/activities' , getActivities);
 
-router.get('/activities/:date' , getActivitiesByDate);
+router.get('/activities/:userId/:date' , getActivitiesByDate);
+
+router.get('/report/:userId' , report);
 
 
 

@@ -3,19 +3,26 @@ var jwt = require('jsonwebtoken')
 
 const getActivitiesByDate = async (req, res, next) => {
     try {
-        const token = req.headers['access-token']
-        const payload = jwt.decode(token)
-        const user = await models.User.findOne({
-            where: {
-                name: payload.name
-            }
-        })
-        const data = await models.Activity.findAll({
-            where: {
-                userId: user.id,
-                date:req.params.date,
-            }
-        })
+        // const token = req.headers['access-token']
+        // const payload = jwt.decode(token)
+        // const user = await models.User.findOne({
+        //     where: {
+        //         name: payload.name
+        //     }
+        // })
+        // const data = await models.Activity.findAll({
+        //     where: {
+        //         userId: user.id,
+        //         date:req.params.date,
+        //     }
+        // })console.log(req.params.userId)
+    const data=await models.Activity.findAll({
+        where :{
+            userId:req.params.userId,
+            date:req.params.date
+        }
+    })
+
         res.status(200).json({
             data
         })
